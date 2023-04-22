@@ -24,49 +24,10 @@ export default function Nav3() {
             <Flex className={styles.giveSty} position="relative" align="center">
                 {/* <Box className="navHove1" > */}
                 <Box>
-                    <NavLink onClick={setSearchFalse} to="/products/saree">Sarees</NavLink>
+                    <NavLink onClick={setSearchFalse} to="/products/">All Products</NavLink>
                     <Navdrop1 />
                 </Box>
-                {/* <Box  className="navHove2" > */}
-                <Box>
-                    <NavLink onClick={setSearchFalse}  to="/products/Lehengas">Lehengas</NavLink>
-                    <Navdrop2 />
-                </Box>
-                {/* <Box className="navHove3" > */}
-                <Box>
-                    <NavLink onClick={setSearchFalse} _hover={{ borderBottom: "2px solid #670b19" }} to="/products/salwaarKameez">SalwarKameez</NavLink>
-                    <Navdrop3 />
-                </Box>
-                {/* <Box className="navHove4" > */}
-                <Box>
-                    <NavLink onClick={setSearchFalse} _hover={{ borderBottom: "2px solid #670b19" }} to="/products/kurtis">Kurtis</NavLink>
-                    <Navdrop4 />
-                </Box>
-                {/* <Box className="navHove5" > */}
-                <Box>
-                    <NavLink onClick={setSearchFalse} _hover={{ borderBottom: "2px solid #670b19" }} to="/products/jewellary">Jewellery</NavLink>
-                    <Navdrop5 />
-                </Box>
-                {/* <Box className="navHove6" > */}
-                <Box>
-                    <NavLink onClick={setSearchFalse} _hover={{ borderBottom: "2px solid #670b19" }} to="/products/kids">Kids</NavLink>
-                    <Navdrop6 />
-                </Box>
-                {/* <Box className="navHove7" > */}
-                <Box>
-                    <NavLink onClick={setSearchFalse} _hover={{ borderBottom: "2px solid #670b19" }} to="/products/mens">Men</NavLink>
-                    <Navdrop7 />
-                </Box>
-                {/* <Box className="navHove8" > */}
-                <Box>
-                    <NavLink onClick={setSearchFalse} _hover={{ borderBottom: "2px solid #670b19" }} to="/products/homeLiving">Home & Living</NavLink>
-                    <Navdrop8 />
-                </Box>
-                {/* <Box className="navHove10" > */}
-                <Box>
-                    <NavLink onClick={setSearchFalse} _hover={{ borderBottom: "2px solid #670b19" }} to="/products/spiritual">Spiritual</NavLink>
-                    <Navdrop10 />
-                </Box>             
+                            
             </Flex>
         </Flex>
     )
