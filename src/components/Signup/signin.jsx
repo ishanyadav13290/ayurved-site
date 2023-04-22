@@ -49,7 +49,7 @@ async function Id(name,func){
       users.map(el=>{
         if(el.email== email.current.value && el.password == password.current.value){
           Login();
-          if(el.isAdmin)
+          if(el.isAdmin) setIsAdmin(true)
           success = true;
           Id(email.current.value,setLoginUserID)
           setSignInSuccessfull(true);

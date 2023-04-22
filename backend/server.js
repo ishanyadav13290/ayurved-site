@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require("cors")
 const port = process.env.PORT || 3001;
-const { connection, UsersModel, ProductsModel } = require("./db");
+const { connection, UsersModel, orderedProductsModel} = require("./db");
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const bcrypt = require('bcrypt');
@@ -101,22 +101,22 @@ app.delete("/users/:id", async (req, res) => {
     }
 });
 
-// Products EndPoint
+// orders EndPoint
 
-app.get("/products", async (req, res) => {
+app.get("/orders", async (req, res) => {
     const query = req.query;
     try {
-        const data = await ProductsModel.find(query);
+        const data = await orderedProductsModel.find(query);
         res.send(data);
     } catch (err) {
         res.status(500).send("Internal Server Error");
     }
 });
 
-app.get("/products/:id", async (req, res) => {
+app.get("/orders/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const data = await ProductsModel.findById(id);
+        const data = await orderedProductsModel.findById(id);
         if (!data) {
             res.status(404).send("Object not found");
         } else {
@@ -127,10 +127,10 @@ app.get("/products/:id", async (req, res) => {
     }
 });
 
-app.post("/products", async (req, res) => {
+app.post("/orders", async (req, res) => {
     const data = req.body;
     try {
-        const member = new ProductsModel(data);
+        const member = new orderedProductsModel(data);
         await member.save();
         res.send(data);
     } catch (err) {
@@ -139,22 +139,105 @@ app.post("/products", async (req, res) => {
     }
 });
 
-app.patch("/products/:id", async (req, res) => {
+app.patch("/orders/:id", async (req, res) => {
     const id = req.params.id;
     try {
         const data = req.body;
         console.log(id)
-        const updatedObjet = await ProductsModel.UsersModel({ _id: id }, data);
+        const updatedObjet = await orderedProductsModel.UsersModel({ _id: id }, data);
         res.send(`Object with ID:${id} has been deleted`);
     }
     catch (err) {
         res.status(500).send("Internal Server Error");
     }
 })
-app.delete("/products/:id", async (req, res) => {
+app.delete("/orders/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await ProductsModel.UsersModel(id);
+        const deletedObject = await orderedProductsModel.UsersModel(id);
+        if (!deletedObject) {
+            res.status(404).send("Object not found");
+        } else {
+            res.send(`Object with ID:${id} has been deleted`);
+        }
+    } catch (err) {
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+  
+    const user = await UsersModel.findOne({ email });
+    if (!user) {
+      return res.json({ message: 'User Not Found' });
+    }
+  
+    // const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (user.password != password) {
+      return res.json({ message: 'Invalid Password' });
+    }
+  
+    const token = jwt.sign({ userId: user._id }, secret);
+  
+    res.json({ token,_id:user._id });
+  });
+
+
+  //Orders
+  app.get("/orders", async (req, res) => {
+    const query = req.query;
+    try {
+        const data = await orderedProductsModel.find(query);
+        res.send(data);
+    } catch (err) {
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.get("/orders/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const data = await orderedProductsModel.findById(id);
+        if (!data) {
+            res.status(404).send("Object not found");
+        } else {
+            res.send(data);
+        }
+    } catch (err) {
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post("/orders", async (req, res) => {
+    const data = req.body;
+    try {
+        const member = new orderedProductsModel(data);
+        await member.save();
+        res.send(data);
+    } catch (err) {
+        console.log(err)
+        res.send(err);
+    }
+});
+
+app.patch("/orders/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const data = req.body;
+        console.log(id)
+        const updatedObjet = await orderedProductsModel.UsersModel({ _id: id }, data);
+        res.send(`Object with ID:${id} has been deleted`);
+    }
+    catch (err) {
+        res.status(500).send("Internal Server Error");
+    }
+})
+app.delete("/orders/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const deletedObject = await orderedProductsModel.UsersModel(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {

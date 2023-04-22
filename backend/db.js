@@ -16,13 +16,26 @@ const productsSchema = mongoose.Schema({
     price: { type: String, required:true },
     image: { type: String },
 })
+const orderedProductsSchema = mongoose.Schema({
+    "fullName": { type: String },
+"streetAddress": { type: String },
+"zipCode": { type: String },
+"city": { type: String },
+"emailAddress": { type: String },
+"orderedProducts":{ type: Array },
+"paymentMode": { type: String }
+})
+
+
 
 
 const UsersModel = mongoose.model("user", usersSchema)
 const ProductsModel = mongoose.model("product", productsSchema)
+const orderedProductsModel = mongoose.model("orders", orderedProductsSchema)
 
 module.exports = {
     connection,
     UsersModel,
     ProductsModel,
+    orderedProductsModel
 }
