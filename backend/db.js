@@ -23,6 +23,7 @@ const orderedProductsSchema = mongoose.Schema({
 "zipCode": { type: String },
 "city": { type: String },
 "emailAddress": { type: String },
+"phoneNumber":{type:Number},
 "orderedProducts":{ type: Array },
 "paymentMode": { type: String }
 })

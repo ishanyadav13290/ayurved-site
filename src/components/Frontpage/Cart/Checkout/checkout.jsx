@@ -25,12 +25,14 @@ export default function Checkout() {
   const streetAddressRef = useRef(null)
   const zipCodeRef = useRef(null)
   const cityRef = useRef(null)
+  const phoneNumberRef = useRef(null)
   const emailAddressRef = useRef(null)
   
   useEffect(() => {
     let finalTotal = 0;
     cartItems.forEach((el,i)=>{
-      finalTotal +=el.price * el.qty
+      // finalTotal +=el.price * el.qty 
+      finalTotal += checkoutTotal
     })
     setCheckoutTotal(finalTotal);
   }, [cartItems]);
@@ -66,6 +68,10 @@ export default function Checkout() {
             </Box>
           </Flex>
           <Box w="100%">
+            <Text fontWeight={"500"}>Phone Number</Text>
+            <Input ref={phoneNumberRef} type="number" required placeholder="9765432100" />
+          </Box>
+          <Box w="100%">
             <Text fontWeight={"500"}>Email Address</Text>
             <Input ref={emailAddressRef} placeholder="you@example.com" />
           </Box>
@@ -94,7 +100,7 @@ export default function Checkout() {
           return <Box display={["block","block","flex"]} mb={"20px"} w={"100%"} key={i} justify={"center"} align={"center"}>
           <Box>
             <Image
-              src={el.img}
+              src={el.image}
               w={"100px"}
             />
           </Box>
@@ -123,6 +129,7 @@ export default function Checkout() {
             zipCode:zipCodeRef.current.value,
             city:cityRef.current.value,
             emailAddress:emailAddressRef.current.value,
+            phoneNumber:phoneNumberRef.current.value,
             orderedProducts:[...cartItems],
             paymentMode:"Cash on Delivery ( COD )"
           }

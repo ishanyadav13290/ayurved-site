@@ -11,7 +11,7 @@ import { useContext } from 'react'
   import { FaArrowRight } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../../AuthContext/context'
-  import { formatPrice } from './PriceTag'
+import toIndianNumberingSystem from '../../Features/Carousel/IndianConversionSystem'
   const OrderSummaryItem = (props) => {
     // let {setCheckoutTotal} = useContext(AuthContext)
     const { label, value,children } = props
@@ -32,15 +32,10 @@ import { AuthContext } from '../../AuthContext/context'
         <Heading size="md">Order Summary</Heading>
   
         <Stack spacing="6">
-          <OrderSummaryItem label="Subtotal" value={formatPrice(total)} />
+          <OrderSummaryItem label="Subtotal" value={toIndianNumberingSystem(total)} />
           <OrderSummaryItem label="Shipping + Tax">
             <Link href="#" textDecor="underline">
-              Calculate shipping
-            </Link>
-          </OrderSummaryItem>
-          <OrderSummaryItem label="Coupon Code">
-            <Link href="#" textDecor="underline">
-              Add coupon code
+              {toIndianNumberingSystem(50)}
             </Link>
           </OrderSummaryItem>
           <Flex justify="space-between">
@@ -48,13 +43,13 @@ import { AuthContext } from '../../AuthContext/context'
               Total
             </Text>
             <Text fontSize="xl" fontWeight="extrabold">
-              {formatPrice(total)}
+              {toIndianNumberingSystem(total+50)}
             </Text>
           </Flex>
         </Stack>
         <NavLink to="/checkout">
         <Button colorScheme="blue" onClick={()=>{
-          setCheckoutTotal(total)
+          setCheckoutTotal(total+50)
         }} size="lg" fontSize="md" rightIcon={<FaArrowRight />}>
           Checkout
         </Button>

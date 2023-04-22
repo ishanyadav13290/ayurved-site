@@ -17,14 +17,21 @@ import axios from "axios";
 import { useState } from "react";
 import { CartOrderSummary } from "./CartOrderSummary";
 import { CartProductMeta } from "./CartProductMeta";
-import { PriceTag } from "./PriceTag";
+import toIndianNumberingSystem from "../../Features/Carousel/IndianConversionSystem";
 
 export default function Cart() {
-  let { loginUserID, total, setTotal, setCheckoutTotal,cartItems, setCartItems } = useContext(AuthContext);
+  let {
+    loginUserID,
+    total,
+    setTotal,
+    setCheckoutTotal,
+    cartItems,
+    setCartItems,
+  } = useContext(AuthContext);
   // let [cartItems, setCartItems] = useState([]);
   async function getData() {
     if (loginUserID?.id == undefined) {
-      return alert("Please Login")
+      return alert("Please Login");
     }
     let data = await axios.get(
       `https://ayurved-products-api.onrender.com/users/${loginUserID.id}`
@@ -40,7 +47,6 @@ export default function Cart() {
       Totaltemp += Temp;
     }
     setTotal(Totaltemp);
-    
   }, []);
   return (
     <Box
@@ -127,26 +133,26 @@ const QuantitySelect = (props) => {
   );
 };
 export const CartItem = (props) => {
-  let { loginUserID, total, setTotal,setCartLength } = useContext(AuthContext);
+  let { loginUserID, total, setTotal, setCartLength } = useContext(AuthContext);
   const {
     name,
     description,
     quantity,
-    img,
+    image,
     currency,
     price,
     setCartItems,
     cartItems,
     index,
-    qty
+    qty,
   } = props;
   function updateQuantity(index, value) {
     if (loginUserID.id == undefined) {
-      return
+      return;
     }
     cartItems[index].qty = +value;
     axios.patch(
-      `https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`,
+      `https://ayurved-products-api.onrender.com/users/${loginUserID.id}`,
       {
         cart: cartItems,
       }
@@ -160,7 +166,7 @@ export const CartItem = (props) => {
       Totaltemp += Temp;
     }
     setTotal(Totaltemp);
-  }, [newPrice, cartItems])
+  }, [newPrice, cartItems]);
   return (
     <Flex
       direction={{
@@ -173,7 +179,7 @@ export const CartItem = (props) => {
       <CartProductMeta
         name={name}
         description={description}
-        image={img}
+        image={image}
         price={price}
       />
 
@@ -194,23 +200,22 @@ export const CartItem = (props) => {
             updateQuantity(index, e.target.value);
           }}
         />
-        <PriceTag price={newPrice} currency={currency} quantity={quantity} />
+        <Text fontWeight={"700"}>{toIndianNumberingSystem(newPrice)}</Text>
         <CloseButton
           aria-label={`Delete ${name} from cart`}
-          onClick={()=>{
+          onClick={() => {
             let tempCart = [...cartItems];
-            tempCart.splice(index,1);
+            tempCart.splice(index, 1);
             setCartItems(tempCart);
-            setCartLength((prev)=>prev-1);
-            if(tempCart.length==0) setTotal(0)
+            setCartLength((prev) => prev - 1);
+            if (tempCart.length == 0) setTotal(0);
             axios.patch(
-              `https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`,
+              `https://ayurved-products-api.onrender.com/users/${loginUserID.id}`,
               {
                 cart: tempCart,
               }
             );
           }}
-          
         />
       </Flex>
 
@@ -225,19 +230,23 @@ export const CartItem = (props) => {
           md: "none",
         }}
       >
-        <Link  fontSize="sm" textDecor="underline" onClick={()=>{
+        <Link
+          fontSize="sm"
+          textDecor="underline"
+          onClick={() => {
             let tempCart = [...cartItems];
-            tempCart.splice(index,1);
+            tempCart.splice(index, 1);
             setCartItems(tempCart);
-            setCartLength((prev)=>prev-1);
-            if(tempCart.length==0) setTotal(0)
+            setCartLength((prev) => prev - 1);
+            if (tempCart.length == 0) setTotal(0);
             axios.patch(
-              `https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`,
+              `https://ayurved-products-api.onrender.com/users/${loginUserID.id}`,
               {
                 cart: tempCart,
               }
             );
-          }}>
+          }}
+        >
           Delete
         </Link>
         <QuantitySelect
@@ -248,7 +257,7 @@ export const CartItem = (props) => {
             updateQuantity(index, e.target.value);
           }}
         />
-        <PriceTag price={newPrice} currency={currency} quantity={quantity} />
+        <Text fontWeight={"700"}>{toIndianNumberingSystem(newPrice)}</Text>
       </Flex>
     </Flex>
   );
