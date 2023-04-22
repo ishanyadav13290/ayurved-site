@@ -38,17 +38,18 @@ async function Id(name,func){
   export default function SigninCard() {
     const [showPassword, setShowPassword] = useState(false);
     const {Login, state,setAlertVal, setSignInSuccessfull} = useContext(AuthContext)
-    const {loginUserID,setLoginUserID} = useContext(AuthContext)
+    const {loginUserID,setLoginUserID,setIsAdmin} = useContext(AuthContext)
     let email = useRef(null)
     let password = useRef(null)
     
     async function checkUser(){
-      let data = await axios.get("https://festive-candle-fontina.glitch.me/shop");
+      let data = await axios.get("https://ayurved-products-api.onrender.com/users");
       let users=data.data;
       let success = false;
       users.map(el=>{
-        if(el.email== email.current.value && el.pass == password.current.value){
+        if(el.email== email.current.value && el.password == password.current.value){
           Login();
+          if(el.isAdmin)
           success = true;
           Id(email.current.value,setLoginUserID)
           setSignInSuccessfull(true);

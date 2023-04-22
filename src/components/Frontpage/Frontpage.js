@@ -14,9 +14,15 @@ export default function Frontpage() {
         <MobileCards />
             <Box display={["none","none","none", "block", "block"]}>
             <Carousel />
+            <br />
+      <br />
+      <br />
             </Box>
             {/* <BigGrid /> */}
             <Cards />
+            <br />
+      <br />
+      <br />
             <Expand />
             
         </>

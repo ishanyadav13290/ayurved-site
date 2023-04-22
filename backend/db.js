@@ -7,7 +7,8 @@ const usersSchema = mongoose.Schema({
     email: { type: String, unique: true },
     password: { type: String },
     cart: { type: Array },
-    prevOrders:{type:Array}
+    prevOrders:{type:Array},
+    isAdmin:{type:Boolean}
 })
 const productsSchema = mongoose.Schema({
     name: { type: String, required:true },

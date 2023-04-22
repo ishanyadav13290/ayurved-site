@@ -28,8 +28,11 @@ export default function Footer() {
   });
   return (
     <>
-      <SignUpdate />
+      {/* <SignUpdate /> */}
       {/* <ReviewCarousel /> */}
+      <br />
+      <br />
+      <br />
       <Box
         bg="url('https://www.mirraw.com/assets/footer_bg.png')"
         h="auto"

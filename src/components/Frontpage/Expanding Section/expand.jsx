@@ -3,38 +3,38 @@ import LordIcon from "../../Features/Carousel/LordIcon"
 
 export default function Expand(){
       return  <Box w={["95%","85%","75%"]} m="auto" p="20px">
-            <Text fontWeight="700" fontSize="xl">Indian Clothing Online Shopping for Women & Men</Text>
+            <Text fontWeight="700" fontSize="xl">Ayurvedic Natural Treatment</Text>
             <Box fontSize="sm" m="10px 0">
-            During 2500 BC, India became one of the first places to grow and use cotton for making clothes. Human art forms in Indian temples and monuments are perhaps the main source of information on Indian clothing. Apart from that the rock-cut sculptures, the cave paintings, and remains from the sites of Indus Valley civilization also give a detailed bureau of clothing trends in India.
+            Ayurveda is a traditional Indian system of medicine that dates back more than 5,000 years. The word "Ayurveda" is derived from the Sanskrit words "ayu" (life) and "veda" (knowledge). This holistic approach to healthcare aims to balance the mind, body, and spirit through personalized treatments that are tailored to an individual's unique constitution. 
             </Box>
             <Box fontSize="sm" m="10px 0">
-            A large majority of Indian clothing for men and women has evolved from garments like langota, lungi, sari, gamcha, and dhoti. India is the second most populous country in the world and it shows great diversity in its population as well. Clothing in India is greatly influenced by the religion people follow.
+            Ayurveda emphasizes the use of natural remedies, such as herbs, spices, and oils, and encourages healthy lifestyle practices, including yoga, meditation, and a balanced diet. Today, Ayurveda is recognized as a complementary and alternative medicine (CAM) practice in many countries around the world.
             </Box>
 
    <Accordion defaultIndex={[false]} allowMultiple >
   <AccordionItem>
     <h2>
       <AccordionButton p="0">
-        <Flex w="100%"><Text fontWeight="700" fontSize="xl">More About Ethnic Wear Online Shopping</Text>
+        <Flex w="100%"><Text fontWeight="700" fontSize="xl">History of Ayurveda</Text>
         <Spacer />
         <LordIcon  />
         </Flex>
       </AccordionButton>
     </h2>
     <AccordionPanel p="0" pb={4} >
-    <Box fontSize="sm" m="10px 0">The most notable ethnic apparel for men in India is the kurta pyjama. The sherwani is an iteration of the kurta pyjama and is mainly worn during the wedding. However, the kurta pyjama is an iteration of the jama dhoti which was worn by men India in the 19th century. It is still worn regularly by men in rural areas and occasionally by men in urban areas during festive occasions.</Box>
-    <Box fontSize="sm" m="10px 0">Apart from the dhoti, ethnic Indian wear also consists of the sarong which is more commonly known as the lungi. It is a piece of cloth that men drape around the waist and tie it. It is usually worn by Muslim men. But a large majority of men in South and East India can be seen sporting the lungi. It comes in different patterns and colors but the length of the cloth is usually constant.</Box>
-    <Box fontSize="sm" m="10px 0">The sherwani is another Indian ethnic wear. The ethnic name of this garment is achkan. It is essentially a kurta made in the form of a jacket with exposed button, heavy embroidery and needlework. The sherwani flows just below the knees and is usually paired with pants called churidar. As a matter of fact, churidars are also worn by Indian women.</Box>
-    <Box fontSize="sm" m="10px 0">The bandhgala is an iteration of the sherwani. Bandh means closed and gala means neck. The name suggests that the garment sports a closed neck design or what many people like to call as the mandarin collar design. This garment hails from the royal land of Jodhpur. The pants worn with this are baggy throughout the hip and thigh region and grasp the legs tightly. This Indian ethnic wear gain popularity quickly and a large majority of men wear this outfit during festivals, weddings, and special occasions</Box>
-    <Box fontSize="sm" m="10px 0">Sarees are indeed the most popular Indian ethnic wear for women. A saree is basically a long piece of cloth, usually around 10 meters long which is draped around the body in a variety of different styles. Different regions have a special type of saree, for example, Kanchipuram from South India, Paithani from Maharashtra, Benarasi from North India, and Muga Silk from Assam. A blouse is worn with the saree which is called the choli.</Box>
-    <Box fontSize="sm" m="10px 0">The saree is very popular in all parts of India and so is the salwar kameez. The kameez is basically a kurti and the salwar is the lower garment. It is traditionally worn by women in Punjab and hence, it is also sometimes referred to as the Punjabi Suit. There are different iterations of the salwar kameez. The Anarkali suit, palazzo suit, Patiala suit etc. are some of the different kinds of suits available. Dupatta is worn along with salwar kameez. It is called the odani in some parts of India and is mainly used to veil the head in the presence of elders.</Box>
-    <Box fontSize="sm" m="10px 0">Change in fashion trends has bought in various types of salwars like dhoti salwar, churidars, Patiala salwars, Afghani Salwars, Palazzo and so on.</Box>
+    <Box fontSize="sm" m="10px 0">Ayurveda is an ancient system of medicine that has been practiced in India for thousands of years. The origins of Ayurveda can be traced back to the Vedas, which are a collection of ancient Hindu scriptures. Ayurveda is believed to have been developed by the sages and seers of ancient India who were seeking ways to maintain good health and longevity.
 
-    <Text fontWeight="700">Traditional Clothing of India</Text>
-    <Box fontSize="sm" m="10px 0">Traditional Indian clothing depends largely on the religious group that people follow. Followers of Islam probably have the most distinct outfits. Islam guides that men and women must dress modestly. Islamic clothing is all about modesty. Both men and women have certain rules on what they can wear and what they can’t. One distinctive feature of the Islamic pant is that they are airy and comfortable.</Box>
-    <Box fontSize="sm" m="10px 0">Serwal is one of the most prevalent pant types in Muslim culture. A large majority of Muslim men have at least 1 serwal in their wardrobe. The serwal is made from cotton and is mostly worn beneath the thobe. Men can also pair it with a white shirt. The serwal also doubles down as a pyjama. It is very comfortable and can be worn easily at home. It is available in the elastic waist, drawstring waist, or a combination of both. In Islamic culture, the serwal is better known as mikasser.</Box>
-    <Box fontSize="sm" m="10px 0">Muslim men also wear the izar which is an iteration of the lungi/sarong. For Muslim women, the burka, hijab and abaya are staples. The hijab is a cloth which is used to cover the head, the abaya is a free-flowing cloak from head to toe and the burka covers the head and the chest region. Men and women that follow Hinduism wear kurta pyjama and sarees mainly. Regional diversity also comes into play when talking about traditional Indian clothing.</Box>
-    <Box fontSize="sm" m="10px 0">Therefore, the Indian clothing history is very rich and the future of Indian fashion also looks pretty bright with all the fashion designers around. Get the fashion trend outfits at Mirraw online shopping site with amazing options and cool price</Box>
+
+
+
+
+
+</Box>
+    <Box fontSize="sm" m="10px 0">The first written records of Ayurveda date back to around 1500 BCE, in the form of the Atharva Veda. Over the centuries, Ayurveda evolved into a comprehensive system of medicine with detailed descriptions of diseases, treatments, and medicinal herbs.</Box>
+    <Box fontSize="sm" m="10px 0">
+During the Mauryan period (322 BCE to 185 BCE), the emperor Ashoka promoted the spread of Ayurveda throughout his kingdom, which helped to establish it as a widely accepted form of medicine in India.</Box>
+    <Box fontSize="sm" m="10px 0">Ayurveda continued to flourish throughout the centuries, with many notable scholars and physicians contributing to its development. In the 8th century CE, the famous Ayurvedic text, the Charaka Samhita, was written, which is still considered one of the most important works on Ayurvedic medicine.</Box>
+    <Box fontSize="sm" m="10px 0">Today, Ayurveda continues to be an important part of traditional Indian medicine and is recognized as a complementary and alternative medicine (CAM) practice in many parts of the world.</Box>
     </AccordionPanel>
   </AccordionItem>
   </Accordion>
