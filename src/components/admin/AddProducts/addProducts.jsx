@@ -40,6 +40,7 @@ import {
       link = link.data;
       console.log(link.secure_url)
       setImage(link.secure_url)
+      setFinalProduct({...finalProduct,image: link.secure_url})
   };
   
     function handleRemoveImage() {
@@ -48,6 +49,7 @@ import {
 
     function uploadProduct(){
       console.log(finalProduct)
+      axios.post(`https://ayurved-products-api.onrender.com/products`,finalProduct)
     }
 
     

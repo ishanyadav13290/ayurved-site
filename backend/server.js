@@ -79,18 +79,18 @@ app.patch("/users/:id", async (req, res) => {
     const id = req.params.id;
     try {
         const data = req.body;
-        console.log(id)
-        const updatedObjet = await UsersModel.UsersModel({ _id: id }, data);
+        console.log(data, id)
+        const updatedObjet = await UsersModel.findOneAndUpdate({ _id: id }, data);
         res.send(`Object with ID:${id} has been deleted`);
     }
     catch (err) {
-        res.status(500).send("Internal Server Error");
+        res.send(err);
     }
 })
 app.delete("/users/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await UsersModel.UsersModel(id);
+        const deletedObject = await UsersModel.findOneAndUpdate(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {
@@ -144,7 +144,7 @@ app.patch("/orders/:id", async (req, res) => {
     try {
         const data = req.body;
         console.log(id)
-        const updatedObjet = await orderedProductsModel.UsersModel({ _id: id }, data);
+        const updatedObjet = await orderedProductsModel.findOneAndUpdate({ _id: id }, data);
         res.send(`Object with ID:${id} has been deleted`);
     }
     catch (err) {
@@ -154,7 +154,7 @@ app.patch("/orders/:id", async (req, res) => {
 app.delete("/orders/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await orderedProductsModel.UsersModel(id);
+        const deletedObject = await orderedProductsModel.findOneAndUpdate(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {
@@ -208,7 +208,7 @@ app.patch("/products/:id", async (req, res) => {
     try {
         const data = req.body;
         console.log(id)
-        const updatedObjet = await ProductsModel.UsersModel({ _id: id }, data);
+        const updatedObjet = await ProductsModel.findOneAndUpdate({ _id: id }, data);
         res.send(`Object with ID:${id} has been deleted`);
     }
     catch (err) {
@@ -218,7 +218,7 @@ app.patch("/products/:id", async (req, res) => {
 app.delete("/products/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await ProductsModel.UsersModel(id);
+        const deletedObject = await ProductsModel.findOneAndUpdate(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {

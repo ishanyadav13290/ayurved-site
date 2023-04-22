@@ -24,7 +24,7 @@ export default function Cards(){
         maxW={["auto", "auto", "full"]}
       />
       <Stack mt="-5" spacing='3'>
-      <Button variant='outline' colorScheme='black' bg="rgba(0,0,0,0.5)" color="white" fontSize={["2xs","xs","sm"]} textAlign="left" maxW={["auto", "auto", "full"]}>
+      <Button variant='outline' textDecoration={"none"} colorScheme='black' bg="rgba(0,0,0,0.5)" color="white" fontSize={["2xs","xs","sm"]} textAlign="left" maxW={["auto", "auto", "full"]}>
           {cardImgsTitle[i]}
         </Button>
       </Stack>

@@ -5,7 +5,7 @@ export default function LordIcon(){
     return <lord-icon
     src="https://cdn.lordicon.com/mecwbjnp.json"
     trigger="click"
-    colors="primary:#911051,secondary:#911051">
+    colors="primary:#379237,secondary:#379237">
 </lord-icon>
 }
 let style={width:"250px",

@@ -29,13 +29,13 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthContext/context";
 import axios from "axios";
 export default function Nav1() {
-  let { loginUserID } = useContext(AuthContext)
+  let { loginUserID } = useContext(AuthContext);
   return (
     <Flex
       id="top"
       className={styles.fill}
       style={{ borderBottom: ".5px solid #eeeeee" }}
-      color="#670b19"
+      color="rgb(103, 11, 25)"
       pl="30px"
       justify="space-between"
       height="40px"
@@ -45,7 +45,10 @@ export default function Nav1() {
         <NavLink to="/" className={styles.marginNav}>
           Contact Us <span>|</span>
         </NavLink>
-        <NavLink className={styles.marginNav}> {loginUserID?.email || "Login"}</NavLink>
+        <NavLink className={styles.marginNav}>
+          {" "}
+          {loginUserID?.email || "Login"}
+        </NavLink>
       </Flex>
 
       {/* Login and Cart */}
@@ -64,20 +67,23 @@ export default function Nav1() {
 }
 
 export function CartLog() {
-  let { loginUserID,setCartLength ,cartLength,cartItems,setCartItems} = useContext(AuthContext)
+  let { loginUserID, setCartLength, cartLength, cartItems, setCartItems } =
+    useContext(AuthContext);
   let [NumberOfItems, setNumberOfItems] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   async function get(userID) {
-    if(!userID) return;
-    let data = await axios.get(`https://festive-candle-fontina.glitch.me/shop/${userID}`);
+    if (!userID) return;
+    let data = await axios.get(
+      `https://festive-candle-fontina.glitch.me/shop/${userID}`
+    );
     let apiCartData = data.data.cart;
-    setCartLength(apiCartData.length)
-    setCartItems(apiCartData)
+    setCartLength(apiCartData.length);
+    setCartItems(apiCartData);
   }
 
   useEffect(() => {
-    get(loginUserID?.id)
-  },[loginUserID?.id])
+    get(loginUserID?.id);
+  }, [loginUserID?.id]);
   return (
     <>
       <Flex>
@@ -93,20 +99,19 @@ export function CartLog() {
           bg="white"
           _hover={{ background: "white" }}
         >
-        <NavLink to="/cart">
-          <Center>
-            <svg
-              style={{ height: "15px", margin: "0 0 0 10px" }}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <path d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z" />
-            </svg>
-            CART{`(${cartLength})`}
-          </Center>
-        </NavLink>
+          <NavLink to="/cart">
+            <Center>
+              <svg
+                style={{ height: "15px", margin: "0 0 0 10px" }}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z" />
+              </svg>
+              CART{`(${cartLength})`}
+            </Center>
+          </NavLink>
         </Flex>
-
       </Flex>
     </>
   );
@@ -117,7 +122,14 @@ function LogInLogOut() {
     /* Logout */
   }
   let { state, LogOut } = useContext(AuthContext);
-  let { loginUserID,setLoginUserID,setCartLength ,cartLength,cartItems,setCartItems} = useContext(AuthContext)
+  let {
+    loginUserID,
+    setLoginUserID,
+    setCartLength,
+    cartLength,
+    cartItems,
+    setCartItems,
+  } = useContext(AuthContext);
   return state ? (
     <Flex
       fontSize={"xs"}
@@ -125,9 +137,9 @@ function LogInLogOut() {
       _hover={{ cursor: "pointer" }}
       onClick={() => {
         LogOut();
-        setCartItems([])
+        setCartItems([]);
         setCartLength(0);
-        setLoginUserID({})
+        setLoginUserID({});
       }}
     >
       <Center fontWeight={600}>

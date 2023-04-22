@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useCallback, useContext, useEffect, useState } from "react";
 import ProductCard from "./productCards";
-import MainProductfilter from "./ProductFilter/mainFilterProduct";
+// import MainProductfilter from "./ProductFilter/mainFilterProduct";
 import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 import Skeleteon from "../Features/Carousel/skeleton";
@@ -33,38 +33,10 @@ export default function Products() {
   let da = useParams();
   const FetchData = async (param) => {
     setLoading(true);
-    let data;
-    //
-    if (activeSearch) {
-      if (sortBasis == "Default")
-      data = await axios.get(
-        `https://e-commerce-api-sncm.onrender.com/allproducts/?q=${searchValue}&_page=${page}&_limit=35`
-      );
-    else if (sortBasis == "HighToLow")
-      data = await axios.get(
-        `https://e-commerce-api-sncm.onrender.com/allproducts/?q=${searchValue}&_sort=effective-price&_order=desc&_page=${page}&_limit=35`
-      );
-    else
-      data = await axios.get(
-        `https://e-commerce-api-sncm.onrender.com/allproducts/?q=${searchValue}&_sort=effective-price&_order=asc&_page=${page}&_limit=35`
-      );
-      // data = await axios.get(`https://e-commerce-api-sncm.onrender.com/saree?q=${searchValue}&_page=${page}&_limit=35`);
-    } 
+    let data = await axios.get(
+          `https://ayurved-products-api.onrender.com/products`
+        );
     
-    else {
-      if (sortBasis == "Default")
-        data = await axios.get(
-          `https://e-commerce-api-sncm.onrender.com/${param}?_page=${page}&_limit=35`
-        );
-      else if (sortBasis == "HighToLow")
-        data = await axios.get(
-          `https://e-commerce-api-sncm.onrender.com/${param}?_sort=effective-price&_order=desc&_page=${page}&_limit=35`
-        );
-      else
-        data = await axios.get(
-          `https://e-commerce-api-sncm.onrender.com/${param}?_sort=effective-price&_order=asc&_page=${page}&_limit=35`
-        );
-    }
     setPageLimit(data.headers["x-total-count"]);
     setProDta(data.data);
     setLoading(false);
@@ -87,58 +59,12 @@ export default function Products() {
           </Flex>
         </Flex>
         <Spacer />
-        <Menu>
-          <MenuButton
-            as={Button}
-            rightIcon={<ChevronDownIcon />}
-            display={["block", "block", "block", "none"]}
-          >
-            Filter
-          </MenuButton>
-          <MenuList>
-            <Accordion allowMultiple={true}>
-              {/* Price */}
-              <AccordionItem>
-                <h2>
-                  <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
-                      Sort by Price
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <MenuItem
-                    onClick={() => {
-                      setSortBasis("Default");
-                    }}
-                  >
-                    Default
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      setSortBasis("HighToLow");
-                    }}
-                  >
-                    High to Low
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      setSortBasis("LowToHigh");
-                    }}
-                  >
-                    Low to High
-                  </MenuItem>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
-          </MenuList>
-        </Menu>
+        
         <Spacer />
       </Flex>
       <Flex width="100vw" justify="center">
         {/* Side Filter */}
-        <MainProductfilter />
+        {/* <MainProductfilter /> */}
         <Grid
           templateColumns={[
             "repeat(2, 1fr)",
@@ -155,44 +81,18 @@ export default function Products() {
             <Skeleteon />
           ) : (
             proData.map((data) => {
-              if (
-                data["lazy src"] != "" &&
-                data["lazy src"] !=
-                  "https://www.mirraw.com/assets/11-335ed79f82b843135faf5fb751a71911e4512e5999837641a2914b270f7e6935.png" &&
-                data["lazy src"] !=
-                  "https://assets0.mirraw.com/images/5827882/139-a_long.jpg?1518529004"
-              ) {
+        
                 return (
                   <ProductCard
-                    loop={`/products/${da.pro || "allproducts"}/${data["listing-title"]}/${data.id}`}
-                    key={data.id}
-                    title={data["listing-title"]}
-                    img={data["lazy src"]}
-                    price={data["effective-price"]}
-                    discount={data["red-discount-percentage"]}
-                    
+                    prodId={data._id}
+                    key={data._id}
+                    title={data["name"]}
+                    img={data["image"]}
+                    price={data["price"]}
                   />
                 );
-              } else if (
-                data["lazy-custom src"] != "" &&
-                data["lazy-custom src"] !=
-                  "https://www.mirraw.com/assets/11-335ed79f82b843135faf5fb751a71911e4512e5999837641a2914b270f7e6935.png" &&
-                data["lazy-custom src"] !=
-                  "https://assets0.mirraw.com/images/5827882/139-a_long.jpg?1518529004"
-              ) {
-                return (
-                  <ProductCard
-                    loop={`/products/${da.pro || "allproducts"}/${data["listing-title"]}/${data.id}`}
-                    key={data.id}
-                    title={data["listing-title"]}
-                    img={data["lazy-custom src"]}
-                    price={data["effective-price"]}
-                    discount={data["red-discount-percentage"]}
-                  />
-                );
-              }
-            })
-          )}
+              }))
+            }
         </Grid>
       </Flex>
       <Flex>

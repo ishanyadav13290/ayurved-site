@@ -34,7 +34,7 @@ export default function Footer() {
       <br />
       <br />
       <Box
-        bg="url('https://www.mirraw.com/assets/footer_bg.png')"
+        bg="#82CD47"
         h="auto"
         p="20px"
         m="auto"
@@ -70,7 +70,7 @@ export default function Footer() {
           </Box>
         </Flex>
       </Box>
-      <Box bg="rgb(123, 14, 29)" color="white" fontSize="xs" p="10px 0">
+      <Box bg="#82CD47" color="white" fontSize="xs" p="10px 0">
         <Center>Copyright 2023. All Rights Reserved.</Center>
       </Box>
       {vis ? (

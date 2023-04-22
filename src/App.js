@@ -44,10 +44,10 @@ function App() {
       <SearchBar />
       <Routes>
         <Route path='/search' element={<Products />} />
-        <Route path='/products/:pro' element={<Products />}></Route>
+        <Route path='/products/' element={<Products />}></Route>
         <Route path='/signup' element={<SignupCard />}></Route>
         <Route path='/signin' element={<SigninCard />}></Route>
-        <Route path='/products/:categories/:name/:id' element={<BigProduct />}></Route>
+        <Route path='/products/:id' element={<BigProduct />}></Route>
         <Route path='/' element={<Frontpage />}></Route>
         <Route path='/faq' element={<FAQ />}></Route>
         <Route path='/cart' element={<Cart />}></Route>

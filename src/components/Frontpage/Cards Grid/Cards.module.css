@@ -1,3 +1,4 @@
 .cardBody:hover button{
-    background-color: rgb(221, 0, 23);
+    background-color: rgb(130, 205, 71);
+    text-decoration: none;
 }

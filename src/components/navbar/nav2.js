@@ -37,7 +37,7 @@ export default function Nav2() {
                         }
                     }}></Input>
                     <NavLink ref={searchButton} to="/search" style={{width:"10%", border:"1px solid black"}}>
-                    <Button _hover={{background:"#670b19"}} bg="#670b19" borderRadius="0" w="100%" onClick={()=>{
+                    <Button _hover={{background:"#379237"}} bg="#54B435" borderRadius="0" w="100%" onClick={()=>{
                         Search()
                     }}><LordIconSearch /></Button></NavLink>
                 </Flex>

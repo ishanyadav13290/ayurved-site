@@ -24,10 +24,10 @@ export default function Cart() {
   // let [cartItems, setCartItems] = useState([]);
   async function getData() {
     if (loginUserID?.id == undefined) {
-      return
+      return alert("Please Login")
     }
     let data = await axios.get(
-      `https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`
+      `https://ayurved-products-api.onrender.com/users/${loginUserID.id}`
     );
     let userData = data.data.cart;
     setCartItems(userData);

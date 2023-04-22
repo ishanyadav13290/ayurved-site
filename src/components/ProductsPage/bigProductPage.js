@@ -16,9 +16,11 @@ import {
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../AuthContext/context";
+import toIndianNumberingSystem from "../Features/Carousel/IndianConversionSystem";
 
 async function addToCart(userID, newItem, cartItems, setCartItems,setCartLength) {
-    if (userID == undefined) return;
+    if (userID == undefined) return alert("Login First");
+    console.log(userID, newItem, cartItems)
     // let data = await axios.get(`https://e-commerce-api-sncm.onrender.com/users/${userID}`);
     // let cartItems = data.data.cart;
 
@@ -31,18 +33,19 @@ async function addToCart(userID, newItem, cartItems, setCartItems,setCartLength)
         if (tempCartItems[i].name == newItem.name) {
             tempCartItems[i].qty = tempCartItems[i].qty + 1;
             setCartItems(tempCartItems);
-            axios.patch(`https://festive-candle-fontina.glitch.me/shop/${userID}`, {
+            console.log(await axios.patch(`https://ayurved-products-api.onrender.com/users/${userID}`, {
                 cart: tempCartItems
-            })
-            return
+            }))
+            console.log(tempCartItems)
+            return alert("Added to cart")
         }
     }
     setCartItems([...tempCartItems, newItem]);
-    axios.patch(`https://festive-candle-fontina.glitch.me/shop/${userID}`, {
+    console.log(await axios.patch(`https://ayurved-products-api.onrender.com/users/${userID}`, {
         cart: [...tempCartItems, newItem]
-    })
+    }))
+    return
     setCartLength((prev) => prev + 1)
-
 }
 export default function BigProduct(props) {
     let { loginUserID, setCartLength, cartItems, setCartItems } = useContext(AuthContext);
@@ -50,10 +53,10 @@ export default function BigProduct(props) {
     let [apiData, setApiData] = useState({})
     let data = useParams();
     async function getData() {
-        let fet = await axios.get(`https://e-commerce-api-sncm.onrender.com/${data.categories}/${data.id}`);
+        // let fet = await axios.get(`https://e-commerce-api-sncm.onrender.com/${data.categories}/${data.id}`);
+        let fet = await axios.get(`https://ayurved-products-api.onrender.com/products/${data.id}`);
         setApiData(fet.data)
     }
-    let img = apiData["lazy-custom src"] == "" ? apiData["lazy src"] : apiData["lazy-custom src"];
     useEffect(() => {
         getData()
     }, [])
@@ -69,7 +72,7 @@ export default function BigProduct(props) {
                             rounded={'md'}
                             alt={'product image'}
                             src={
-                                img
+                                apiData.image
                             }
                             fit={'cover'}
                             align={'center'}
@@ -82,15 +85,16 @@ export default function BigProduct(props) {
                                 lineHeight={1.1}
                                 fontWeight={600}
                                 fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                                {data.name.toUpperCase()}
+                                {apiData.name}
                             </Heading>
+                            <br />
                             <Flex
                                 color={useColorModeValue('gray.900', 'gray.400')}
                                 fontWeight={700}
                                 fontSize={'2xl'}>
-                                    $ 
-                                {apiData["effective-price"] || "0.00"} 
-                                <Text color={"red"} fontWeight={"600"} ml={"10px"}>{apiData["red-discount-percentage"]}</Text>
+                                    
+                                {toIndianNumberingSystem(Number(apiData.price))}
+                                {/* <Text color={"red"} fontWeight={"600"} ml={"10px"}>{apiData["red-discount-percentage"]}</Text> */}
                             </Flex>
                         </Box>
 
@@ -103,19 +107,7 @@ export default function BigProduct(props) {
                                 />
                             }>
                             <VStack spacing={{ base: 4, sm: 6 }}>
-                                <Text
-                                    color={useColorModeValue('gray.500', 'gray.400')}
-                                    fontSize={'2xl'}
-                                    fontWeight={'300'}>
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    diam nonumy eirmod tempor invidunt ut labore
-                                </Text>
-                                <Text fontSize={'lg'}>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                                    aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                                    maxime modi nam officiis porro, quae, quisquam quos
-                                    reprehenderit velit? Natus, totam.
-                                </Text>
+                                
                             </VStack>
                             <Box>
                                 <Text
@@ -127,7 +119,12 @@ export default function BigProduct(props) {
                                     Product Details
                                 </Text>
                                 <Flex flexDir={"column"}>
-
+                                <Text
+                                    color={useColorModeValue('gray.500', 'gray.400')}
+                                    fontSize={'2xl'}
+                                    fontWeight={'300'}>
+                                    {apiData.description}
+                                </Text>
                                 </Flex>
 
                             </Box>
@@ -143,16 +140,16 @@ export default function BigProduct(props) {
                             color={useColorModeValue('white', 'gray.900')}
                             textTransform={'uppercase'}
                             onClick={async () => {
-                                let data1 = {
-                                    img,
-                                    name: data.name.toUpperCase(),
-                                    price: apiData["effective-price"],
+                                let newItem = {
+                                    image:apiData.image,
+                                    name: apiData.name,
+                                    price: apiData.price,
                                     qty: 1,
-                                    id: data.id
+                                    id: apiData._id
                                 }
                                 // setCartLength((prev) => prev + 1)
                                 // setCartItems([...cartItems, data1]);
-                                addToCart(loginUserID?.id, data1, cartItems, setCartItems,setCartLength);
+                                addToCart(loginUserID?.id, newItem, cartItems, setCartItems,setCartLength);
                             }}
                             _hover={{
                                 transform: 'translateY(2px)',
