@@ -17,6 +17,7 @@ import { useContext, useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../../AuthContext/context";
+import toIndianNumberingSystem from "../../../Features/Carousel/IndianConversionSystem";
 
 export default function Checkout() {
   let {cartItems, setCartLength, setCartItems, loginUserID, total,checkoutTotal, setCheckoutTotal} = useContext(AuthContext)
@@ -31,8 +32,8 @@ export default function Checkout() {
   useEffect(() => {
     let finalTotal = 0;
     cartItems.forEach((el,i)=>{
-      // finalTotal +=el.price * el.qty 
-      finalTotal += checkoutTotal
+      finalTotal +=el.price * el.qty 
+      finalTotal += 50
     })
     setCheckoutTotal(finalTotal);
   }, [cartItems]);
@@ -115,7 +116,7 @@ export default function Checkout() {
             <Spacer />
             <Text>Qty: {el.qty}</Text>
             {/* <Spacer /> */}
-            <Text fontWeight={600} ml={"5%"}>${el.price * el.qty}</Text>
+            <Text fontWeight={600} ml={"5%"}>{toIndianNumberingSystem(Number(el.price )* Number(el.qty))}</Text>
           {/* <Spacer /> */}
         </Box>
         })}
@@ -136,7 +137,9 @@ export default function Checkout() {
             emailAddress:emailAddressRef.current.value,
             phoneNumber:phoneNumberRef.current.value,
             orderedProducts:[...cartItems],
-            paymentMode:"Cash on Delivery ( COD )"
+            paymentMode:"Cash on Delivery ( COD )",
+            totalAmt:String(checkoutTotal)
+            
           }
           
           let data = await axios.get(`https://ayurved-products-api.onrender.com/users/${loginUserID.id}`);

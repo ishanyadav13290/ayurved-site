@@ -25,7 +25,8 @@ const orderedProductsSchema = mongoose.Schema({
 "emailAddress": { type: String },
 "phoneNumber":{type:Number},
 "orderedProducts":{ type: Array },
-"paymentMode": { type: String }
+"paymentMode": { type: String },
+"totalAmt": {type:String}
 })
 
 

@@ -21,8 +21,11 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../AuthContext/context";
 import AddProduct from "./AddProducts/addProducts";
+import toIndianNumberingSystem from "../Features/Carousel/IndianConversionSystem";
+import OrdersCard from "./orderCards";
 
 export default function Admin() {
+  
   let { loginUserID } = useContext(AuthContext);
   let [data, setData] = useState([]);
 
@@ -55,47 +58,7 @@ export default function Admin() {
           >
             <TabPanel h="100%" display={"block"} w={"100%"}>
               {data.map((el, j) => {
-                return (
-                  <Box display={["block","flex","flex"]} key={j} w="100%" mb={["10%","7%","3%"]}>
-                    <Box overflowY={"scroll"} maxH={["130px", "full"]} w={["100%","60%","30%"]} border={"1px solid grey"} textAlign="left" p="10px">
-                      {/* <Flex fontWeight={700} >Name:<Text ml={"5px"} fontWeight={400}> {el.fullName}</Text></Flex>
-                      <Flex fontWeight={700} >Address:<Text ml={"5px"} fontWeight={400}> {el.streetAddress}</Text></Flex>
-                      <Flex fontWeight={700} >City:<Text ml={"5px"} fontWeight={400}> {el.city}</Text></Flex>
-                      <Flex fontWeight={700} >Email:<Text ml={"5px"} fontWeight={400}> {el.emailAddress}</Text></Flex> */}
-                      <Flex fontWeight={700} >Name:<Text ml={"5px"} fontWeight={400}> {el.fullName}</Text></Flex>
-                      <Flex fontWeight={700} >Address:<Text ml={"5px"} fontWeight={400}> {el.streetAddress}</Text></Flex>
-                      <Flex fontWeight={700} >City:<Text ml={"5px"} fontWeight={400}> {el.city}</Text></Flex>
-                      <Flex fontWeight={700} >Email:<Text ml={"5px"} fontWeight={400}> {el.emailAddress}</Text></Flex>
-                    </Box>
-                    <Flex
-                      overflowX={"scroll"}
-                      overflowY="hidden"
-                      w={"100%"}
-                      maxH={"300px"}
-                      border={"1px solid grey"}
-                    >
-                      {el.orderedProducts.map((prod, i) => {
-                        return (
-                            <Card minW={["90%","50%","30%"]} key={i}>
-                              <CardBody >
-                                <Box maxW={"100px"} h={["auto","80%"]} m="auto" 
-                                  overflow={"hidden"}>
-                                <Image
-                                  src={prod.img}
-                                  alt="Green double couch with wooden legs"
-                                  borderRadius="lg"
-                                  maxW={"100%"}
-                                  m="auto"
-                                />
-                                </Box>
-                                  <Text fontSize={["xs","sm","md"]} maxW={"100%"}>{prod.name}</Text>
-                              </CardBody>
-                            </Card>
-                        );
-                      })}
-                    </Flex>
-                  </Box>
-                );
+                return <OrdersCard key={j} el={el} />
               })}
             </TabPanel>
             <TabPanel h="100%" display={"block"} w={"100%"}>
