@@ -56,7 +56,7 @@ export default function OrdersCard({el}) {
           Total:
           <Text ml={"5px"} fontWeight={400}>
             {" "}
-            {/* {totalPayableAmt + 50} */}
+            {toIndianNumberingSystem(Number(el.totalAmt) + 50)}
           </Text>
         </Flex>
       </Box>
