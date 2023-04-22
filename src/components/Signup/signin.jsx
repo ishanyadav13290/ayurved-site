@@ -24,10 +24,10 @@ import { useRef, useContext } from 'react';
 import { AuthContext } from '../AuthContext/context';
   
 async function Id(name,func){
-  let data = await axios.get("https://festive-candle-fontina.glitch.me/shop");
+  let data = await axios.get("https://ayurved-products-api.onrender.com/users");
   data.data.forEach(el => {
     if(el.email==name){
-      let id = el.id;
+      let id = el._id;
       let email = el.email;
       func({id,email});
       localStorage.setItem("loginUserID",JSON.stringify({id,email}))
@@ -37,8 +37,8 @@ async function Id(name,func){
 
   export default function SigninCard() {
     const [showPassword, setShowPassword] = useState(false);
-    const {Login, state,setAlertVal, setSignInSuccessfull} = useContext(AuthContext)
-    const {loginUserID,setLoginUserID,setIsAdmin} = useContext(AuthContext)
+    const {Login, state,setAlertVal, setSignInSuccessfull,loginUserID,setLoginUserID, setIsAdmin} = useContext(AuthContext)
+    const {} = useContext(AuthContext)
     let email = useRef(null)
     let password = useRef(null)
     
@@ -49,7 +49,7 @@ async function Id(name,func){
       users.map(el=>{
         if(el.email== email.current.value && el.password == password.current.value){
           Login();
-          if(el.isAdmin) setIsAdmin(true)
+          if(el.isAdmin){setIsAdmin(true)}
           success = true;
           Id(email.current.value,setLoginUserID)
           setSignInSuccessfull(true);

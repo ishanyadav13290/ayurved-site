@@ -20,7 +20,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../AuthContext/context";
-import ProductCard from "../ProductsPage/productCards";
+import AddProduct from "./AddProducts/addProducts";
 
 export default function Admin() {
   let { loginUserID } = useContext(AuthContext);
@@ -28,11 +28,13 @@ export default function Admin() {
 
   useEffect(() => {
     (async function fetch() {
-      let temp = await axios.get("https://purple-fog-period.glitch.me/users");
+      let temp = await axios.get("https://ayurved-products-api.onrender.com/orders");
       setData(temp.data);
+      console.log(temp.data)
     })();
   }, []);
   return (
+    // <Box>Hello</Box>
     <Box>
       <Box>
         <Text fontSize={"xl"} fontWeight={"700"} textAlign={"center"}>
@@ -43,7 +45,7 @@ export default function Admin() {
         <Tabs variant="enclosed" orientation={"vertical"} w={"100%"}>
           <TabList mb="1em" w={"30%"}>
             <Tab>Orders</Tab>
-            <Tab>Others</Tab>
+            <Tab>Add Product</Tab>
           </TabList>
           <TabPanels
             textAlign={"center"}
@@ -56,6 +58,10 @@ export default function Admin() {
                 return (
                   <Box display={["block","flex","flex"]} key={j} w="100%" mb={["10%","7%","3%"]}>
                     <Box overflowY={"scroll"} maxH={["130px", "full"]} w={["100%","60%","30%"]} border={"1px solid grey"} textAlign="left" p="10px">
+                      {/* <Flex fontWeight={700} >Name:<Text ml={"5px"} fontWeight={400}> {el.fullName}</Text></Flex>
+                      <Flex fontWeight={700} >Address:<Text ml={"5px"} fontWeight={400}> {el.streetAddress}</Text></Flex>
+                      <Flex fontWeight={700} >City:<Text ml={"5px"} fontWeight={400}> {el.city}</Text></Flex>
+                      <Flex fontWeight={700} >Email:<Text ml={"5px"} fontWeight={400}> {el.emailAddress}</Text></Flex> */}
                       <Flex fontWeight={700} >Name:<Text ml={"5px"} fontWeight={400}> {el.fullName}</Text></Flex>
                       <Flex fontWeight={700} >Address:<Text ml={"5px"} fontWeight={400}> {el.streetAddress}</Text></Flex>
                       <Flex fontWeight={700} >City:<Text ml={"5px"} fontWeight={400}> {el.city}</Text></Flex>
@@ -94,7 +100,7 @@ export default function Admin() {
             </TabPanel>
             <TabPanel h="100%" display={"block"} w={"100%"}>
             <Box display={["block","flex","flex"]} w="100%" mb={["10%","7%","3%"]} >
-                <Text textAlign="center" w={"100%"} fontSize="2xl" fontWeight={700}>In Future</Text>
+                <AddProduct />
             </Box>
             </TabPanel>
           </TabPanels>

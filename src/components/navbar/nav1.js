@@ -42,7 +42,7 @@ export default function Nav1() {
       width="100vw"
     >
       <Flex align="center" width="70%">
-        <NavLink to="/singin" className={styles.marginNav}>
+        <NavLink to="/" className={styles.marginNav}>
           Contact Us <span>|</span>
         </NavLink>
         <NavLink className={styles.marginNav}> {loginUserID?.email || "Login"}</NavLink>

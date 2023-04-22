@@ -12,7 +12,8 @@ const usersSchema = mongoose.Schema({
 })
 const productsSchema = mongoose.Schema({
     name: { type: String, required:true },
-    category: { type: String, required:true },
+    category: { type: String},
+    description:{type:String},
     price: { type: String, required:true },
     image: { type: String },
 })
@@ -31,7 +32,7 @@ const orderedProductsSchema = mongoose.Schema({
 
 const UsersModel = mongoose.model("user", usersSchema)
 const ProductsModel = mongoose.model("product", productsSchema)
-const orderedProductsModel = mongoose.model("orders", orderedProductsSchema)
+const orderedProductsModel = mongoose.model("order", orderedProductsSchema)
 
 module.exports = {
     connection,
