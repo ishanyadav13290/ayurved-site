@@ -38,11 +38,16 @@ export default function Checkout() {
   }, [cartItems]);
 
   return (
-    <Box
+    <>
+    <br />
+    <Box textAlign={"center"}>
+      <Text fontSize={"lg"} fontWeight={700}>Once you tap on PLACE ORDER, we'll contact you offline and proceed your order!!!!</Text>
+    </Box>
+      <Box
       display={["block", "block", "flex"]}
       p="20px"
       w={["80%"]}
-      m=" 3% auto"
+      m=" 3% auto 5px auto"
       bg="white"
       boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
     >
@@ -134,29 +139,30 @@ export default function Checkout() {
             paymentMode:"Cash on Delivery ( COD )"
           }
           
-          let data = await axios.get(`https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`);
+          let data = await axios.get(`https://ayurved-products-api.onrender.com/users/${loginUserID.id}`);
           data = data.data;
           if(!data.prevOrders){
-            axios.patch(`https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`,{
+            axios.patch(`https://ayurved-products-api.onrender.com/users/${loginUserID.id}`,{
               prevOrders:[obj]
             });
           }
           else{
-            axios.patch(`https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`,{
+            axios.patch(`https://ayurved-products-api.onrender.com/users/${loginUserID.id}`,{
               prevOrders:[...data.prevOrders,obj]
             });
           }
-          axios.post("https://purple-fog-period.glitch.me/users",obj)
-          axios.patch(`https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`,{
+          axios.post("https://ayurved-products-api.onrender.com/orders",obj)
+          axios.patch(`https://ayurved-products-api.onrender.com/users/${loginUserID.id}`,{
             cart:[]
           })
           setCartItems([]);
           setCartLength(0)
-        }} m={"auto"} variant={"outline"} color="white" bg="rgb(104, 12, 26)">Place Order</Button></NavLink>
+        }} m={"auto"} variant={"outline"} color="white" bg="rgb(55, 146, 55)">Place Order</Button></NavLink>
         </Flex>
       </VStack>
       
     </Box>
+    </>
     
   );
 }
