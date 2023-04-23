@@ -44,8 +44,8 @@ async function addToCart(userID, newItem, cartItems, setCartItems,setCartLength)
     console.log(await axios.patch(`https://ayurved-products-api.onrender.com/users/${userID}`, {
         cart: [...tempCartItems, newItem]
     }))
-    return
     setCartLength((prev) => prev + 1)
+    return
 }
 export default function BigProduct(props) {
     let { loginUserID, setCartLength, cartItems, setCartItems } = useContext(AuthContext);

@@ -16,7 +16,6 @@ export default function RemoveTestimonials({data}){
         })
         .catch(error => console.log(error));
         
-        console.log(id)
     }
     return <Card maxW='sm'>
     <CardBody>

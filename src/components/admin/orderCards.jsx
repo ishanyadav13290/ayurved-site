@@ -1,8 +1,25 @@
-import { Box, Card, CardBody, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, Flex, Image, Text } from "@chakra-ui/react";
 import toIndianNumberingSystem from "../Features/Carousel/IndianConversionSystem";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../AuthContext/context";
 
 export default function OrdersCard({el}) {
+  let {ordersData, setOrdersData} = useContext(AuthContext)
+
+  function DeleteProduct(order){
+    console.log(order)
+    axios.delete(`https://ayurved-products-api.onrender.com/orders/${order}`)
+        .then(response => {
+          // remove the deleted product from productsData array
+          const updatedOrdersData = ordersData.filter(product => product._id !== order);
+          // update productsData state with new array
+          setOrdersData(updatedOrdersData);
+        })
+        .catch(error => console.log(error));
+        
+  }
   return (
     <Box
       display={["block", "flex", "flex"]}
@@ -59,6 +76,9 @@ export default function OrdersCard({el}) {
             {toIndianNumberingSystem(Number(el.totalAmt) + 50)}
           </Text>
         </Flex>
+        <Button onClick={()=>{DeleteProduct(el._id)}} variant='solid' size={'sm'} colorScheme='red'>
+          Delete
+        </Button>
       </Box>
       <Flex
         overflowX={"scroll"}

@@ -1,5 +1,6 @@
-import { Box, Text, Accordion, AccordionButton, AccordionItem, AccordionPanel, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Text, Accordion, AccordionButton, AccordionItem, AccordionPanel, Flex, Spacer, Image } from "@chakra-ui/react";
 import LordIcon from "../../Features/Carousel/LordIcon"
+import poster from "../../database/Imgs/poster.jpg"
 
 export default function Expand(){
       return  <Box w={["95%","85%","75%"]} m="auto" p="20px">
@@ -23,18 +24,35 @@ export default function Expand(){
     </h2>
     <AccordionPanel p="0" pb={4} >
     <Box fontSize="sm" m="10px 0">Ayurveda is an ancient system of medicine that has been practiced in India for thousands of years. The origins of Ayurveda can be traced back to the Vedas, which are a collection of ancient Hindu scriptures. Ayurveda is believed to have been developed by the sages and seers of ancient India who were seeking ways to maintain good health and longevity.
-
-
-
-
-
-
 </Box>
     <Box fontSize="sm" m="10px 0">The first written records of Ayurveda date back to around 1500 BCE, in the form of the Atharva Veda. Over the centuries, Ayurveda evolved into a comprehensive system of medicine with detailed descriptions of diseases, treatments, and medicinal herbs.</Box>
     <Box fontSize="sm" m="10px 0">
 During the Mauryan period (322 BCE to 185 BCE), the emperor Ashoka promoted the spread of Ayurveda throughout his kingdom, which helped to establish it as a widely accepted form of medicine in India.</Box>
     <Box fontSize="sm" m="10px 0">Ayurveda continued to flourish throughout the centuries, with many notable scholars and physicians contributing to its development. In the 8th century CE, the famous Ayurvedic text, the Charaka Samhita, was written, which is still considered one of the most important works on Ayurvedic medicine.</Box>
     <Box fontSize="sm" m="10px 0">Today, Ayurveda continues to be an important part of traditional Indian medicine and is recognized as a complementary and alternative medicine (CAM) practice in many parts of the world.</Box>
+    </AccordionPanel>
+  </AccordionItem>
+  </Accordion>
+   <Accordion defaultIndex={[false]} allowMultiple >
+  <AccordionItem>
+    <h2>
+      <AccordionButton p="0">
+        <Flex w="100%"><Text fontWeight="700" fontSize="xl">About Us</Text>
+        <Spacer />
+        <LordIcon  />
+        </Flex>
+      </AccordionButton>
+    </h2>
+    <AccordionPanel p="0" pb={4} >
+    <Box fontSize="sm" m="10px 0">Hello, I'm Bali Ram Yadav, a Retired Army Personnel. After Retirement, I decided to operate an Ayurvedic Medical Store in Anjad City of Barwani District with a friend of Mine (Ayurvedic Doctor).
+</Box>
+    <Box fontSize="sm" m="10px 0">Our Medical Products are 100% Natural and our products are safe to consume. Our Products are associated with Utkarsh Corporation.</Box>
+    <Box fontSize="sm" m="10px 0">Patients visits my house to consult the doctor twice a week, on Wednesday and Sunday.</Box>
+    <Box fontSize="sm" m="10px 0">Below is the attached Poster of our medical centre.</Box>
+    <Box fontSize="sm" m="10px 0">You can demand your products through this site, and we'll contact you afterwards for delivery and payment.</Box>
+    <Box fontSize="sm" m="10px 0">
+      <Image src={poster} alt="poster" />
+    </Box>
     </AccordionPanel>
   </AccordionItem>
   </Accordion>

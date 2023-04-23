@@ -137,10 +137,10 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #670b19;
+  background: rgb(92, 211, 85);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #440a13;
+  background: rgb(55, 146, 55);
 }

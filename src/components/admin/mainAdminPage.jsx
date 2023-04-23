@@ -29,14 +29,13 @@ import AddTestimonials from "./AddTestimonials/AddTestimonials";
 import RemoveTestimonials from "./removeTestimonials";
 
 export default function Admin() {
+  let { ordersData, setOrdersData,loginUserID, productsData, setProductsData, testimonialData } = useContext(AuthContext);
   
-  let { loginUserID, productsData, setProductsData, testimonialData } = useContext(AuthContext);
-  let [data, setData] = useState([]);
 
   useEffect(() => {
     (async function fetch() {
       let temp = await axios.get("https://ayurved-products-api.onrender.com/orders");
-      setData(temp.data);
+      setOrdersData(temp.data);
     })();
     (async function fetch() {
       let temp = await axios.get("https://ayurved-products-api.onrender.com/products");
@@ -67,7 +66,7 @@ export default function Admin() {
             overflowY={"scroll"}
           >
             <TabPanel h="100%" display={"block"} w={"100%"}>
-              {data.map((el, j) => {
+              {ordersData.map((el, j) => {
                 return <OrdersCard key={j} el={el} />
               })}
             </TabPanel>
@@ -77,7 +76,7 @@ export default function Admin() {
             </Box>
             </TabPanel>
             <TabPanel h="100%" display={"block"} w={"100%"}>
-            <Grid templateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6} w="100%" m="auto">
+            <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6} w="100%" m="auto">
                 {productsData.map((el,i)=>{
                   return <ListedProductsCards key={i} data={el} />
                 })}
@@ -87,7 +86,7 @@ export default function Admin() {
             <AddTestimonials />
             </TabPanel>
             <TabPanel h="100%" display={"block"} w={"100%"}>
-            <Grid templateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6} w="100%" m="auto">
+            <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6} w="100%" m="auto">
             {testimonialData.map((el,i)=>{
                   return <RemoveTestimonials key={i} data={el} />
                 })}

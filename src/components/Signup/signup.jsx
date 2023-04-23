@@ -80,11 +80,12 @@ export default function SignupCard() {
     if (isValidPassword(pass.current.value) && isValidEmail(mail.current.value) && pass.current.value == conPass.current.value) {
       let user = {
         email: mail.current.value,
-        pass: pass.current.value,
-        conPass: conPass.current.value,
-        cart: []
+        password: pass.current.value,
+        cart: [],
+        prevOrders:[],
+        isAdmin:false
       }
-      let data = await axios.get("https://festive-candle-fontina.glitch.me/shop")
+      let data = await axios.get("https://ayurved-products-api.onrender.com/users")
 
       let users = data.data
 
@@ -96,7 +97,7 @@ export default function SignupCard() {
         }
       });
       if (condition) {
-        axios.post("https://festive-candle-fontina.glitch.me/shop", user)
+        axios.post("https://ayurved-products-api.onrender.com/users", user)
       }
 
       setUserCreated(true)
@@ -180,7 +181,6 @@ export default function SignupCard() {
                 align={'start'}
                 p="10px 0"
                 justify={'space-between'}>
-                <Checkbox>I agree to the receive news letters from Mirraw</Checkbox>
               </Stack>
             </FormControl>.
             {/* Sign up Button */}
@@ -191,11 +191,11 @@ export default function SignupCard() {
                 size="sm"
                 w="30%"
                 m="auto"
-                bg={'rgb(103, 11, 25)'}
+                bg={'rgb(55, 146, 55)'}
                 color={'white'}
                 onClick={() => { CreateUser() }}
                 _hover={{
-                  bg: 'rgb(103, 11, 25)',
+                  bg: 'rgb(130, 205, 71)',
                 }}>
                 Sign up
               </Button>
@@ -205,17 +205,7 @@ export default function SignupCard() {
 
             {/* Login with other medium */}
             {/* Paypal */}
-            <Link><Box w="50%" m="auto"><Image src="https://www.mirraw.com/assets/sign_in_paypal-a7e67035ea1461ada1fc96bf69697552340e3c9fb1969f7e9ef0c52eb7ed05d6.png" /></Box></Link>
-            <Stack>
-              {/* Facebook and Google */}
-              <HStack p="0">
-                <Link><Box ><Image src="https://www.mirraw.com/assets/facebook_sign_in-e998b55d7d821ba819897132537e42149cee923ea215a5eaf0e2a6335efe6c67.png" /></Box></Link>
-                <Link><Box ><Image src="https://www.mirraw.com/assets/google_sing_in-3426a2d2b760db2be7127653d216d7578e499c5e7df25fea1f861a56108d7d5b.png" /></Box></Link>
-              </HStack>
-              <Text align={'center'}>
-                Have an Account? <NavLink to="/signin" color={'blue.400'}>Sign In</NavLink>
-              </Text>
-            </Stack>
+            
           </Stack>
         </Box>
       </Stack>

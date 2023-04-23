@@ -7,18 +7,8 @@ import {
   Center,
   Text,
   Box,
-  Button,
-  MenuItem,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
   useDisclosure,
-  Image,
-  Spacer,
-  VStack,
+  MenuItem,
 } from "@chakra-ui/react";
 import modal from "../database/Imgs/modal.png";
 // import {
@@ -42,9 +32,6 @@ export default function Nav1() {
       width="100vw"
     >
       <Flex align="center" width="70%">
-        <NavLink to="/" className={styles.marginNav}>
-          Contact Us <span>|</span>
-        </NavLink>
         <NavLink className={styles.marginNav}>
           {" "}
           {loginUserID?.email || "Login"}
@@ -74,7 +61,7 @@ export function CartLog() {
   async function get(userID) {
     if (!userID) return;
     let data = await axios.get(
-      `https://festive-candle-fontina.glitch.me/shop/${userID}`
+      `https://ayurved-products-api.onrender.com/users/${userID}`
     );
     let apiCartData = data.data.cart;
     setCartLength(apiCartData.length);

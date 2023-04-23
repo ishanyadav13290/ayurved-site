@@ -7,6 +7,7 @@ import DrawerExample from "./Hamburger";
 import { useRef } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../AuthContext/context";
+import logo from "../database/Imgs/vighnahartaLogo.png"
 
 export default function Nav2() {
     let {searchValue, setSearchValue,setActiveSearch} = useContext(AuthContext)
@@ -28,7 +29,7 @@ export default function Nav2() {
             <DrawerExample />
                 <NavLink to="/" onClick={()=>{
                     setActiveSearch(false)
-                }}><Box flexShrink="0"><Image src="https://www.mirraw.com/assets/logo-red.png"  display={["flex", "flex", "flex"]} w={["25%","50%","100%"]} minW={["50%","50%","100%"]} m="0 20%" /></Box></NavLink>
+                }}><Box flexShrink="0"><Image src={logo}  display={["flex", "flex", "flex"]} w={["100%","50%","30%"]} m="0 20%" /></Box></NavLink>
                 <Flex border="1px solid black" w="50%" display={["none", "none", "flex"]} flexShrink="0">
                     <Input ref={searchQuery} border="none" fontStyle="italic" placeholder="Search Something..." borderRadius="0" w="90%" onKeyDown={(e)=>{
                         if(e.key=="Enter"){

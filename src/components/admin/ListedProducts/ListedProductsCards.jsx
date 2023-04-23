@@ -23,10 +23,8 @@ export default function ListedProductsCards({data}){
         src={data.image}
         alt={data.name}
         borderRadius='lg'
-        minH={"250px"}
-        maxH={"250px"}
-        minW={"250px"}
-        maxW={"250px"}
+        height={["200px","200px","220px","250px"]}
+        width={["200px","200px","220px","250px"]}
       /></Center>
       <Stack mt='4' spacing='3'>
         <Heading size='md'>{data.name}</Heading>

@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     if (loginUserID.id) {
       (async function adminCheck() {
-        let data = await axios.get(`https://festive-candle-fontina.glitch.me/shop/${loginUserID.id}`)
+        let data = await axios.get(`https://ayurved-products-api.onrender.com/users/${loginUserID.id}`)
         data = data.data;
         setIsAdmin(!!data.isAdmin);
       })()
