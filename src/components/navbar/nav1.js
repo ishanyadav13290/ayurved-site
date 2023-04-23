@@ -25,7 +25,7 @@ export default function Nav1() {
       id="top"
       className={styles.fill}
       style={{ borderBottom: ".5px solid #eeeeee" }}
-      color="rgb(103, 11, 25)"
+      color="rgb(0, 128, 0)"
       pl="30px"
       justify="space-between"
       height="40px"

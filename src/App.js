@@ -13,7 +13,7 @@ import AlertCompo, { CustomAlert, SignInSuccessfull, UserExistsAlert, WrongEmail
 import Cart from './components/Frontpage/Cart/Cart';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from './components/AuthContext/context';
-import { SearchBar } from './components/navbar/nav2';
+// import { SearchBar } from './components/navbar/nav2';
 import Checkout from './components/Frontpage/Cart/Checkout/checkout';
 import axios from 'axios';
 import Admin from './components/admin/mainAdminPage';
@@ -41,7 +41,7 @@ function App() {
       <SignInSuccessfull />
       <Navbar />
       <Box display={["block", "block", "none", "none", "none"]} w={"100vw"} h="100px"></Box>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <Routes>
         <Route path='/search' element={<Products />} />
         <Route path='/products/' element={<Products />}></Route>

@@ -52,29 +52,3 @@ export default function Nav2() {
     )
 }
 
-export function SearchBar(){
-    let {searchValue, setSearchValue,setActiveSearch} = useContext(AuthContext)
-    let searchQuery = useRef(null)
-    let searchButton = useRef(null)
-    let [searchParams, setSearchParams] = useSearchParams("")
-    function Search(){
-       let value= searchQuery.current.value
-       setSearchParams(value)
-       setSearchValue(value)
-       setActiveSearch(true)
-       searchQuery.current.value=""
-    //    setActiveSearch(false)
-    }
-    return <Flex border="1px solid black" w="90%" m=" 2% auto" display={["flex", "flex", "none"]} flexShrink="0">
-    <Input ref={searchQuery} border="none" fontStyle="italic" placeholder="Search Something..." borderRadius="0" w="90%" onKeyDown={(e)=>{
-        if(e.key=="Enter"){
-            Search()
-            searchButton.current.click()
-        }
-    }}></Input>
-    <NavLink ref={searchButton} to="/search" style={{width:"auto", border:"1px solid black"}}>
-    <Button _hover={{background:"#670b19"}} bg="#670b19" borderRadius="0" w="100%" onClick={()=>{
-        Search()
-    }}><LordIconSearch /></Button></NavLink>
-</Flex>
-}
