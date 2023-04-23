@@ -25,10 +25,12 @@ import AddProduct from "./AddProducts/addProducts";
 import toIndianNumberingSystem from "../Features/Carousel/IndianConversionSystem";
 import OrdersCard from "./orderCards";
 import ListedProductsCards from "./ListedProducts/ListedProductsCards";
+import AddTestimonials from "./AddTestimonials/AddTestimonials";
+import RemoveTestimonials from "./removeTestimonials";
 
 export default function Admin() {
   
-  let { loginUserID, productsData, setProductsData } = useContext(AuthContext);
+  let { loginUserID, productsData, setProductsData, testimonialData } = useContext(AuthContext);
   let [data, setData] = useState([]);
 
   useEffect(() => {
@@ -55,6 +57,8 @@ export default function Admin() {
             <Tab>Orders</Tab>
             <Tab>Add Product</Tab>
             <Tab>Listed Products</Tab>
+            <Tab>Add Testimonials</Tab>
+            <Tab>Remove Testimonials</Tab>
           </TabList>
           <TabPanels
             textAlign={"center"}
@@ -76,6 +80,16 @@ export default function Admin() {
             <Grid templateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6} w="100%" m="auto">
                 {productsData.map((el,i)=>{
                   return <ListedProductsCards key={i} data={el} />
+                })}
+            </Grid>
+            </TabPanel>
+            <TabPanel h="100%" display={"block"} w={"100%"}>
+            <AddTestimonials />
+            </TabPanel>
+            <TabPanel h="100%" display={"block"} w={"100%"}>
+            <Grid templateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6} w="100%" m="auto">
+            {testimonialData.map((el,i)=>{
+                  return <RemoveTestimonials key={i} data={el} />
                 })}
             </Grid>
             </TabPanel>

@@ -90,7 +90,7 @@ app.patch("/users/:id", async (req, res) => {
 app.delete("/users/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await UsersModel.findOneAndDelete(id);
+        const deletedObject = await UsersModel.findByIdAndDelete(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {
@@ -154,7 +154,7 @@ app.patch("/orders/:id", async (req, res) => {
 app.delete("/orders/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await orderedProductsModel.findOneAndDelete(id);
+        const deletedObject = await orderedProductsModel.findByIdAndDelete(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {
@@ -218,7 +218,7 @@ app.patch("/products/:id", async (req, res) => {
 app.delete("/products/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await ProductsModel.findOneAndDelete(id);
+        const deletedObject = await ProductsModel.findByIdAndDelete(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {
@@ -283,7 +283,7 @@ app.patch("/testimonials/:id", async (req, res) => {
 app.delete("/testimonials/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await testimonialsModel.findOneAndDelete(id);
+        const deletedObject = await testimonialsModel.findByIdAndDelete(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {
