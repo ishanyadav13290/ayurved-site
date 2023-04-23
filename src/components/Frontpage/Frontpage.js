@@ -7,6 +7,7 @@ import {BigGrid} from "./BigPicGrid/BigGrid"
 import Cards from "./Cards Grid/Cards"
 import Expand from "./Expanding Section/expand"
 import MobileCards from "./mobile-view cards/MobileCards"
+import Testimonials from "./Testimonials/Testimonials"
 
 export default function Frontpage() {
     return (
@@ -21,6 +22,7 @@ export default function Frontpage() {
             {/* <BigGrid /> */}
             <Cards />
             <br />
+            <Testimonials />
       <br />
       <br />
             <Expand />

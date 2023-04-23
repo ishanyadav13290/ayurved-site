@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require("cors")
 const port = process.env.PORT || 3001;
-const { connection, UsersModel, orderedProductsModel, ProductsModel} = require("./db");
+const { connection, UsersModel,testimonialsModel, orderedProductsModel, ProductsModel} = require("./db");
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const bcrypt = require('bcrypt');
@@ -80,7 +80,7 @@ app.patch("/users/:id", async (req, res) => {
     try {
         const data = req.body;
         console.log(data, id)
-        const updatedObjet = await UsersModel.findOneAndDelete({ _id: id }, data);
+        const updatedObjet = await UsersModel.findOneAndUpdate({ _id: id }, data);
         res.send(`Object with ID:${id} has been deleted`);
     }
     catch (err) {
@@ -90,7 +90,7 @@ app.patch("/users/:id", async (req, res) => {
 app.delete("/users/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedObject = await UsersModel.findOneAndUpdate(id);
+        const deletedObject = await UsersModel.findOneAndDelete(id);
         if (!deletedObject) {
             res.status(404).send("Object not found");
         } else {
@@ -228,6 +228,72 @@ app.delete("/products/:id", async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+
+
+//testimonials
+ app.get("/testimonials", async (req, res) => {
+    const query = req.query;
+    try {
+        const data = await testimonialsModel.find(query);
+        res.send(data);
+    } catch (err) {
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.get("/testimonials/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const data = await testimonialsModel.findById(id);
+        if (!data) {
+            res.status(404).send("Object not found");
+        } else {
+            res.send(data);
+        }
+    } catch (err) {
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post("/testimonials", async (req, res) => {
+    const data = req.body;
+    try {
+        const member = new testimonialsModel(data);
+        await member.save();
+        res.send(data);
+    } catch (err) {
+        console.log(err)
+        res.send(err);
+    }
+});
+
+app.patch("/testimonials/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const data = req.body;
+        console.log(id)
+        const updatedObjet = await testimonialsModel.findOneAndUpdate({ _id: id }, data);
+        res.send(`Object with ID:${id} has been deleted`);
+    }
+    catch (err) {
+        res.status(500).send("Internal Server Error");
+    }
+})
+app.delete("/testimonials/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const deletedObject = await testimonialsModel.findOneAndDelete(id);
+        if (!deletedObject) {
+            res.status(404).send("Object not found");
+        } else {
+            res.send(`Object with ID:${id} has been deleted`);
+        }
+    } catch (err) {
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;

@@ -28,6 +28,12 @@ const orderedProductsSchema = mongoose.Schema({
 "paymentMode": { type: String },
 "totalAmt": {type:String}
 })
+const testimonialsSchema = mongoose.Schema({
+    "name": { type: String },
+"role": { type: String },
+"content": { type: String },
+"avatar": { type: String }
+})
 
 
 
@@ -35,10 +41,12 @@ const orderedProductsSchema = mongoose.Schema({
 const UsersModel = mongoose.model("user", usersSchema)
 const ProductsModel = mongoose.model("product", productsSchema)
 const orderedProductsModel = mongoose.model("order", orderedProductsSchema)
+const testimonialsModel = mongoose.model("testimonial", testimonialsSchema)
 
 module.exports = {
     connection,
     UsersModel,
     ProductsModel,
+    testimonialsModel,
     orderedProductsModel
 }

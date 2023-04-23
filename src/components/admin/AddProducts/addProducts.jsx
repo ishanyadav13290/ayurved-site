@@ -18,8 +18,11 @@ import {
   import {useState, useRef} from "react"
   import { SmallCloseIcon } from '@chakra-ui/icons';
   import axios from "axios"
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthContext/context';
   
   export default function AddProduct(){
+    let { setProductsData} = useContext(AuthContext)
     let imageInput = useRef()
     const [image, setImage] = useState(null);
     let [finalProduct, setFinalProduct] = useState({
@@ -47,10 +50,12 @@ import {
       setImage(null);
     }
 
-    function uploadProduct(){
-      console.log(finalProduct)
+   async function uploadProduct(){
       axios.post(`https://ayurved-products-api.onrender.com/products`,finalProduct)
-    }
+
+     let newData = await axios.get(`https://ayurved-products-api.onrender.com/products`)
+     setProductsData(newData.data)
+  }
 
     
     return (
