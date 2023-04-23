@@ -6,13 +6,11 @@ import { SearchBar } from "../navbar/nav2"
 import {BigGrid} from "./BigPicGrid/BigGrid"
 import Cards from "./Cards Grid/Cards"
 import Expand from "./Expanding Section/expand"
-import MobileCards from "./mobile-view cards/MobileCards"
 import Testimonials from "./Testimonials/Testimonials"
 
 export default function Frontpage() {
     return (
         <>
-        <MobileCards />
             <Box display={["none","none","none", "block", "block"]}>
             <Carousel />
             <br />
