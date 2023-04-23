@@ -3,6 +3,7 @@ import {
   Card,
   CardBody,
   Flex,
+  Grid,
   Heading,
   Image,
   Spacer,
@@ -23,17 +24,21 @@ import { AuthContext } from "../AuthContext/context";
 import AddProduct from "./AddProducts/addProducts";
 import toIndianNumberingSystem from "../Features/Carousel/IndianConversionSystem";
 import OrdersCard from "./orderCards";
+import ListedProductsCards from "./ListedProducts/ListedProductsCards";
 
 export default function Admin() {
   
-  let { loginUserID } = useContext(AuthContext);
+  let { loginUserID, productsData, setProductsData } = useContext(AuthContext);
   let [data, setData] = useState([]);
 
   useEffect(() => {
     (async function fetch() {
       let temp = await axios.get("https://ayurved-products-api.onrender.com/orders");
       setData(temp.data);
-      console.log(temp.data)
+    })();
+    (async function fetch() {
+      let temp = await axios.get("https://ayurved-products-api.onrender.com/products");
+      setProductsData(temp.data);
     })();
   }, []);
   return (
@@ -49,6 +54,7 @@ export default function Admin() {
           <TabList mb="1em" w={"30%"}>
             <Tab>Orders</Tab>
             <Tab>Add Product</Tab>
+            <Tab>Listed Products</Tab>
           </TabList>
           <TabPanels
             textAlign={"center"}
@@ -65,6 +71,13 @@ export default function Admin() {
             <Box display={["block","flex","flex"]} w="100%" mb={["10%","7%","3%"]} >
                 <AddProduct />
             </Box>
+            </TabPanel>
+            <TabPanel h="100%" display={"block"} w={"100%"}>
+            <Grid templateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6} w="100%" m="auto">
+                {productsData.map((el,i)=>{
+                  return <ListedProductsCards key={i} data={el} />
+                })}
+            </Grid>
             </TabPanel>
           </TabPanels>
         </Tabs>

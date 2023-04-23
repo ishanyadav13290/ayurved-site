@@ -21,6 +21,7 @@ export default function ContextProvider({children}){
     let [activeSearch, setActiveSearch] = useState(false)
     let [checkoutTotal, setCheckoutTotal]= useState(total);
     let [isAdmin,setIsAdmin] = useState(false);
+    let [productsData, setProductsData] = useState([]);
     function Login(){
         setState(true);
         localStorage.setItem("loginStatus",JSON.stringify(true))
@@ -31,5 +32,5 @@ export default function ContextProvider({children}){
         localStorage.setItem("loginStatus",JSON.stringify(false))
         localStorage.setItem("loginUserID",JSON.stringify({}))
     }
-    return <AuthContext.Provider value={{isAdmin,setIsAdmin,checkoutTotal, setCheckoutTotal,activeSearch, setActiveSearch,searchValue, setSearchValue,signInSuccessfull, setSignInSuccessfull,wrongPassword, setWrongPassword,wrongEmail, setWrongEmail,state,Login, LogOut,alertVal,setAlertVal, userCreated,setUserCreated,userExists, setUserExists,cartItems,setCartItems,loginUserID,setLoginUserID,cartLength,setCartLength,sortBasis,setSortBasis, total, setTotal}}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{productsData, setProductsData,isAdmin,setIsAdmin,checkoutTotal, setCheckoutTotal,activeSearch, setActiveSearch,searchValue, setSearchValue,signInSuccessfull, setSignInSuccessfull,wrongPassword, setWrongPassword,wrongEmail, setWrongEmail,state,Login, LogOut,alertVal,setAlertVal, userCreated,setUserCreated,userExists, setUserExists,cartItems,setCartItems,loginUserID,setLoginUserID,cartLength,setCartLength,sortBasis,setSortBasis, total, setTotal}}>{children}</AuthContext.Provider>
 }
