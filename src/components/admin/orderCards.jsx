@@ -9,13 +9,13 @@ export default function OrdersCard({el}) {
   let {ordersData, setOrdersData} = useContext(AuthContext)
 
   function DeleteProduct(order){
-    console.log(order)
     axios.delete(`https://ayurved-products-api.onrender.com/orders/${order}`)
         .then(response => {
           // remove the deleted product from productsData array
           const updatedOrdersData = ordersData.filter(product => product._id !== order);
           // update productsData state with new array
           setOrdersData(updatedOrdersData);
+          alert("Order Deleted")
         })
         .catch(error => console.log(error));
         

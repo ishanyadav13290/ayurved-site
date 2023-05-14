@@ -41,7 +41,6 @@ import { AuthContext } from '../../AuthContext/context';
 
       let link = await axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,formData);
       link = link.data;
-      console.log(link.secure_url)
       setImage(link.secure_url)
       setFinalProduct({...finalProduct,image: link.secure_url})
   };
@@ -55,6 +54,7 @@ import { AuthContext } from '../../AuthContext/context';
 
      let newData = await axios.get(`https://ayurved-products-api.onrender.com/products`)
      setProductsData(newData.data)
+     alert("Added New Product")
   }
 
     

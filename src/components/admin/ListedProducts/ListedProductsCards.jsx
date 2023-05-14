@@ -13,6 +13,7 @@ export default function ListedProductsCards({data}){
           const updatedProductsData = productsData.filter(product => product._id !== id);
           // update productsData state with new array
           setProductsData(updatedProductsData);
+          alert("Product Deleted")
         })
         .catch(error => console.log(error));
         

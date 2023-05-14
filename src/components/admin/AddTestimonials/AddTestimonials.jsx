@@ -33,8 +33,8 @@ import { AuthContext } from '../../AuthContext/context';
     })
     const handleImageChange = async (e) => {
       const file = e.target.files[0];
-      let cloud_name = "dl95ipzp9"
-    let upload_preset = "ml_default"
+      let cloud_name = "dodljshqs"
+    let upload_preset = "zgoizyqx"
       let formData = new FormData();
       formData.append("file",file);
       formData.append("upload_preset",upload_preset);
@@ -54,6 +54,7 @@ import { AuthContext } from '../../AuthContext/context';
 
      let newData = await axios.get(`https://ayurved-products-api.onrender.com/testimonials`)
      setTestimonialData(newData.data)
+     alert("Testimonial Added")
   }
 
     
