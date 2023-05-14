@@ -43,7 +43,7 @@ export default function ProductCard(props) {
               </Text>
               <Heading size="xs" textTransform="uppercase">
                 <Flex gap={"10px"}>
-                  <Box> {toIndianNumberingSystem(props.price)}</Box>
+                  <Box> {toIndianNumberingSystem(Number(props.price))}</Box>
                   <Box color={"red"}>{props.discount}</Box>
                 </Flex>
               </Heading>
