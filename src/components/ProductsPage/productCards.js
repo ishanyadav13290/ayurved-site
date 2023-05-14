@@ -11,6 +11,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import toIndianNumberingSystem from "../Features/Carousel/IndianConversionSystem";
 
 export default function ProductCard(props) {
   return (
@@ -42,7 +43,7 @@ export default function ProductCard(props) {
               </Text>
               <Heading size="xs" textTransform="uppercase">
                 <Flex gap={"10px"}>
-                  <Box>$ {props.price}</Box>
+                  <Box> {toIndianNumberingSystem(props.price)}</Box>
                   <Box color={"red"}>{props.discount}</Box>
                 </Flex>
               </Heading>

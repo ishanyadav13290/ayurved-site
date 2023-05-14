@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.46b01032.css",
-    "main.js": "/static/js/main.71928a6c.js",
+    "main.js": "/static/js/main.04b3f12b.js",
     "static/media/poster.jpg": "/static/media/poster.eb5c9c22e1f2c648cd70.jpg",
     "static/media/vighnahartaLogo.png": "/static/media/vighnahartaLogo.90f122ba73e1f9901a83.png",
     "static/media/modal.png": "/static/media/modal.c0a46c137954bd6d2201.png",
     "index.html": "/index.html",
     "main.46b01032.css.map": "/static/css/main.46b01032.css.map",
-    "main.71928a6c.js.map": "/static/js/main.71928a6c.js.map"
+    "main.04b3f12b.js.map": "/static/js/main.04b3f12b.js.map"
   },
   "entrypoints": [
     "static/css/main.46b01032.css",
-    "static/js/main.71928a6c.js"
+    "static/js/main.04b3f12b.js"
   ]
 }
